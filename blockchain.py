@@ -99,6 +99,11 @@ def checkTransaction(data):
 
     global transactionId
 
+    #Verify amount o transfer
+    if(data["amount"] <=0):
+      print(Fore.RED + "\nInvalid amount\n" + Style.RESET_ALL)
+      return
+
     #Search the wallet of the sender
     sender = next((wallet for wallet in wallets if wallet["name"].lower() == data["from"].lower()), None)
     if sender is None:
@@ -114,6 +119,10 @@ def checkTransaction(data):
     if receiver is None:
         print(Fore.RED + "\nReceiver not found\n" + Style.RESET_ALL)
         return
+    
+    if (receiver == sender):
+      print(Fore.RED + "\nSender and Receiver can't be the same\n" + Style.RESET_ALL)
+      return
 
     #Update the amount of the sender and receiver in the wallet
     for wallet in wallets:
