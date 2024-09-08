@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This program simulates the core functionalities of a blockchain system. It allows you to create and manage transactions, mine blocks with a specified difficulty, and view the current state of the blockchain and wallets. The blockchain is represented using a Merkle tree to ensure data integrity and security.
+This program simulates the core functionalities of a blockchain system. It allows you to create and manage transactions, mine blocks with a specified difficulty, and view the current state of the blockchain, transactions and wallets. The blockchain is represented using a Merkle tree to ensure data integrity and security.
 
 ## Features
 
@@ -10,6 +10,7 @@ This program simulates the core functionalities of a blockchain system. It allow
 - **Block Mining**: Mine new blocks with a customizable difficulty level.
 - **Blockchain Display**: Print the current state of the blockchain, including details of each block.
 - **Wallet Management**: View the balances and transaction history of each wallet.
+-**Transactions Managment**: View transaction history in the Blockchain.
 
 ## Requirements
 
