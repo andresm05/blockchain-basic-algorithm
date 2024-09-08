@@ -38,9 +38,9 @@ def build_merkle_tree(info):
 
     #Get the hash for each leave
     leaves = [get_hash(str(data["id"]) +
-                           data["from"] + 
-                           data["to"] + 
-                           str(data["amount"]) + 
+                           data["from"] +
+                           data["to"] +
+                           str(data["amount"]) +
                            data["refundTo"]) for data in info]
 
     # Build the tree recursively
@@ -88,17 +88,17 @@ def mintBlock(data, min):
         "block": new_blolck,
         "hash": new_block_hash
     })
-    
+
     #Save the list of transactions for the block
-    transactions.append(data)
+    transactions.append(currentTransactions.copy())
     currentTransactions.clear()
 
     print(Fore.GREEN + "\nBlock succesfully mint\n"+ Style.RESET_ALL)
 
 def checkTransaction(data):
-    
+
     global transactionId
-    
+
     #Search the wallet of the sender
     sender = next((wallet for wallet in wallets if wallet["name"].lower() == data["from"].lower()), None)
     if sender is None:
@@ -108,13 +108,13 @@ def checkTransaction(data):
     if sender["amount"] < data["amount"]:
         print(Fore.RED + "\nInsufficient funds\n" + Style.RESET_ALL)
         return
-    
+
     #Search the wallet of the receiver
     receiver = next((wallet for wallet in wallets if wallet["name"].lower() == data["to"].lower()), None)
     if receiver is None:
         print(Fore.RED + "\nReceiver not found\n" + Style.RESET_ALL)
         return
-    
+
     #Update the amount of the sender and receiver in the wallet
     for wallet in wallets:
         if wallet["name"].lower() == data["from"].lower():
@@ -123,12 +123,12 @@ def checkTransaction(data):
         elif wallet["name"].lower() == data["to"].lower():
             wallet["amount"] += data["amount"]
             wallet["lastTransaction"] = data["id"] + 1
-    
+
     #Add the transaction to the list
     currentTransactions.append(data)
-    
+
     transactionId += 1
-    
+
     print(Fore.GREEN + "\nTransaction completed successfully\n" + Style.RESET_ALL)
 
 #Print the Blockchain
@@ -161,6 +161,21 @@ def print_wallets():
   wallets_df = pd.DataFrame(wallets)
   display(wallets_df)
 
+def print_transactions():
+  if(len(transactions) == 0):
+    print(Fore.RED + "\nNo transactions in the blockchain yet\n" + Style.RESET_ALL)
+    return
+
+  transactions_formatted = []
+  for i, block in enumerate(transactions):
+      for transaction in block:
+          transaction['block'] = i 
+          transactions_formatted.append(transaction)
+
+  df = pd.DataFrame(transactions_formatted)
+
+  display(df)
+
 #Menu for the user to add transactions
 def menu():
     while True:
@@ -168,12 +183,13 @@ def menu():
         print("2. Mine block")
         print("3. Print blockchain")
         print("4. Print wallets")
-        print("5. Exit")
+        print("5. Print transactions")
+        print("6. Exit")
         option = input("Choose an option: ")
         if option == "1":
             sender = input("Enter the sender: ")
             receiver = input("Enter the receiver: ")
-            amount = int(input("Enter the amount: "))
+            amount = float(input("Enter the amount: "))
             data = {
                 "id": transactionId,
                 "from": sender,
@@ -193,9 +209,10 @@ def menu():
         elif option == "4":
             print_wallets()
         elif option == "5":
+            print_transactions()
+        elif option == "6":
             break
         else:
-            print("Invalid option")
+            print(Fore.RED + "\nInvalid option\n" + Style.RESET_ALL)
 
-#Execute the app
 menu()

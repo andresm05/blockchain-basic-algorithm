@@ -50,7 +50,11 @@ After starting the program, you will be presented with a menu with the following
    - **Description**: Show the current state of each wallet.
    - **Details Shown**: Wallet name, balance, and last transaction ID.
 
-5. **Exit**: 
+5. **Print Transactions**:
+   - **Description**: Show transactions that have been added to the Blockchain, along with the corresponding block in which each transaction is stored.
+   - **Details Shown**: id, from, to, refundTo, amount, block.
+
+6. **Exit**: 
    - **Description**: Exit the program.
 
 ## Code Overview
@@ -59,7 +63,7 @@ After starting the program, you will be presented with a menu with the following
 - **Merkle Tree Construction**: `build_merkle_tree(info)` constructs a Merkle tree to summarize the transactions in a block.
 - **Block Mining**: `mintBlock(data, min)` mines a new block by finding a nonce that meets the difficulty requirement.
 - **Transaction Checking**: `checkTransaction(data)` verifies and processes a transaction, updating the relevant wallets.
-- **Printing Information**: `print_network()` and `print_wallets()` display the blockchain and wallet information respectively.
+- **Printing Information**: `print_network()`, `print_wallets()` and `print_transactions()` display the blockchain, wallet and transactions information respectively.
 
 ## Example Usage
 
@@ -70,6 +74,9 @@ After starting the program, you will be presented with a menu with the following
 - **Mining a Block**:
   - **Input**: Difficulty: 2
   - **Output**: Block successfully mined.
+
+-**Printing transactions**
+   -**Output**: Displays all transactions that have been added to the Blockchain so far.
 
 - **Printing Blockchain**:
   - **Output**: Displays the details of each block.
