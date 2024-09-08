@@ -53,7 +53,7 @@ After starting the program, you will be presented with a menu with the following
 
 5. **Print Transactions**:
    - **Description**: Show transactions that have been added to the Blockchain, along with the corresponding block in which each transaction is stored.
-   - **Details Shown**: id, from, to, refundTo, amount, block.
+   - **Details Shown**: id, from, to, refundTo, amount, block ID.
 
 6. **Exit**: 
    - **Description**: Exit the program.
@@ -76,8 +76,8 @@ After starting the program, you will be presented with a menu with the following
   - **Input**: Difficulty: 2
   - **Output**: Block successfully mined.
 
--**Printing transactions**
-   -**Output**: Displays all transactions that have been added to the Blockchain so far.
+- **Printing transactions**
+  - **Output**: Displays all transactions that have been added to the Blockchain so far.
 
 - **Printing Blockchain**:
   - **Output**: Displays the details of each block.
