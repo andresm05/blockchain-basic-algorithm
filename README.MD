@@ -10,7 +10,7 @@ This program simulates the core functionalities of a blockchain system. It allow
 - **Block Mining**: Mine new blocks with a customizable difficulty level.
 - **Blockchain Display**: Print the current state of the blockchain, including details of each block.
 - **Wallet Management**: View the balances and transaction history of each wallet.
--**Transactions Managment**: View transaction history in the Blockchain.
+- **Transactions Managment**: View transaction history in the Blockchain.
 
 ## Requirements
 
